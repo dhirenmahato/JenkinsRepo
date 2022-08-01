@@ -2,12 +2,12 @@
 import groovy.json.JsonSlurperClassic
 node {
 
-    def SF_CONSUMER_KEY_SIT='3MVG95mg0lk4batjNdzwuD_VoHRyM7w.DoW_csdbJOEccKaUvNUBq8c17TEuvlbNKhG1DgWSXxNy2jABzPOwc'
-    def SF_CONSUMER_KEY_PROD='3MVG9pRzvMkjMb6mdk5cLx15frfwLsrsUVzseijyumrW.AgANObmRo68Ng0nteblTC52JCfV72PDc6BqACpl9'
-    def SF_USERNAME_SIT='dhiren@deloitte.com'
-    def SF_USERNAME_PROD='p.prital21@brave-otter-vnbah3.com'
+    def SF_CONSUMER_KEY_SIT='3MVG9rnryk9FxFMUr9jX4zSv9cRduBmdu9_wRKoeQiDA5jY2sBjHu2fcJZoEgNIOhBRxHiQ6tEyV_bYkpp907'
+    def SF_CONSUMER_KEY_PROD='3MVG9rnryk9FxFMXUwcvdbDjbVkmETtaACwS6bJ9uC9v7G.z6YS.n714KNJsVXbuzwRP.HOwhJBEM8CfzTQuy'
+    def SF_USERNAME_SIT='dmahato-sybr@force.com.dmstest'
+    def SF_USERNAME_PROD='dmahato-sybr@force.com.dmsprod'
     def SERVER_KEY_CREDENTIALS_ID='5ea9e40b-16a7-4df3-8caf-7573d80e2482'
-    def SF_INSTANCE_URL = 'https://login.salesforce.com'
+    def SF_INSTANCE_URL = 'https://test.salesforce.com'
 
     
 
