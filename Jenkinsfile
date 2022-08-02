@@ -1,39 +1,26 @@
-#!groovy
-import groovy.json.JsonSlurperClassic
-node {
+pipeline {
+    agent any
+    
+    environment {
 
-    def SF_CONSUMER_KEY_SIT='3MVG95mg0lk4batjNdzwuD_VoHRyM7w.DoW_csdbJOEccKaUvNUBq8c17TEuvlbNKhG1DgWSXxNy2jABzPOwc'
-    
-    def SF_USERNAME_SIT='dhiren@deloitte.com'
-    
+    def SF_CONSUMER_KEY='3MVG95mg0lk4batjNdzwuD_VoHRyM7w.DoW_csdbJOEccKaUvNUBq8c17TEuvlbNKhG1DgWSXxNy2jABzPOwc'
+    def SF_USERNAME='dhiren@deloitte.com'
     def SERVER_KEY_CREDENTIALS_ID='5ea9e40b-16a7-4df3-8caf-7573d80e2482'
     def SF_INSTANCE_URL = 'https://login.salesforce.com'
 
     
 
     def toolbelt = tool 'toolbelt'
-   
-	
-
-      withCredentials([file(credentialsId: SERVER_KEY_CREDENTIALS_ID, variable: 'server_key_file')]) {
-	//stages {
-	    
-        stage('Installation') {
-          
-         // println ('Inside Installation Stage')
-               
-		    rc = bat returnStatus: true, script: "\"${toolbelt}\" force:auth:jwt:grant --clientid ${SF_CONSUMER_KEY_SIT} --username ${SF_USERNAME_SIT} --jwtkeyfile \"${server_key_file}\" --setalias Test --instanceurl ${SF_INSTANCE_URL}"
-		    
-		    
-            bat returnStatus: true, script: "\"${toolbelt}\" force:org:list"
-
-        }
-	    
-	    
-
-        
-
-//}
-}
- 
-}
+    } 
+	  stages {
+	    stage('SYSTEM INTEGRATION TESTING') {
+		 
+      steps {
+				println('Inside Production Deployments')
+		     bat returnStatus: true, script: "\"${toolbelt}\" force:org:list"
+		    bat returnStatus: true, script: "\"${toolbelt}\" force:mdapi:retrieve -r \"metadata\" -u Test -k \"manifest\\package.xml\""
+                    bat returnStatus: true, script: "\"${toolbelt}\" force:mdapi:deploy -f \"metadata/unpackaged.zip\" -u Prod -w 10 "
+      }
+      }
+    }
+  }
